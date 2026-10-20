@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>Ex 1 - Changer de style au clic</title>
+<style>
+  #boite { width: 300px; height: 150px; background: #3498db; color: white; display: flex;
+           align-items: center; justify-content: center; margin-bottom: 15px; border-radius: 8px; }
+</style></head>
+<body>
+<div id="boite">Ma div</div>
+<button onclick="changerCouleur()">Changer la couleur</button>
+<script>
+var couleurs = ["#3498db", "#e74c3c", "#2ecc71", "#f39c12", "#9b59b6"];
+var indice = 0;
+function changerCouleur() {
+  indice = (indice + 1) % couleurs.length;
+  document.getElementById("boite").style.backgroundColor = couleurs[indice];
+}
+</script>
+</body></html>

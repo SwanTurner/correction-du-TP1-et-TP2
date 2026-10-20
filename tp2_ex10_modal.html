@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>Ex 10 - Modal de notification</title>
+<style>
+  body { font-family: Arial, sans-serif; }
+  #fond { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+          align-items: center; justify-content: center; }
+  #modal { background: white; padding: 25px; border-radius: 8px; width: 300px; text-align: center; }
+</style></head>
+<body>
+<button onclick="ouvrir()">Ouvrir</button>
+
+<div id="fond">
+  <div id="modal">
+    <h3>Notification</h3>
+    <p>Ceci est une boîte de dialogue.</p>
+    <button onclick="fermer()">Fermer</button>
+  </div>
+</div>
+<script>
+function ouvrir() { document.getElementById("fond").style.display = "flex"; }
+function fermer() { document.getElementById("fond").style.display = "none"; }
+</script>
+</body></html>

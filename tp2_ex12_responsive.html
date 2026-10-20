@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>Ex 12 - Responsive avec JavaScript</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 15px; }
+  #conteneur { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  #conteneur.mobile { grid-template-columns: 1fr; }
+  .boite { background: #3498db; color: white; padding: 12px; text-align: center; border-radius: 4px; }
+  #info { color: #555; margin-bottom: 10px; }
+</style></head>
+<body>
+<h3>Responsive Page avec JavaScript</h3>
+<p id="info"></p>
+<div id="conteneur">
+  <div class="boite">Boîte 1</div>
+  <div class="boite">Boîte 2</div>
+  <div class="boite">Boîte 3</div>
+  <div class="boite">Boîte 4</div>
+  <div class="boite" id="extra">Boîte 5 (visible seulement sur grand écran)</div>
+</div>
+<script>
+function adapter() {
+  var largeur = window.innerWidth;
+  var conteneur = document.getElementById("conteneur");
+  var extra = document.getElementById("extra");
+
+  if (largeur < 600) {
+    conteneur.classList.add("mobile");       // 1 colonne
+    extra.style.display = "none";            // on masque un élément
+  } else {
+    conteneur.classList.remove("mobile");    // 2 colonnes
+    extra.style.display = "block";           // on le réaffiche
+  }
+  document.getElementById("info").textContent = "Largeur de la fenêtre : " + largeur + " px";
+}
+window.addEventListener("resize", adapter);
+adapter();   // appliqué aussi au chargement
+</script>
+</body></html>

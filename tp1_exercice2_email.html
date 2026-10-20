@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<TITLE>Email validation</TITLE>
+</HEAD>
+<BODY>
+<FORM name="f">
+  Email : <INPUT type="text" name="email">
+  <INPUT type="button" value="Check" onClick="verifierEmail()">
+</FORM>
+<SCRIPT LANGUAGE="Javascript">
+function verifierEmail() {
+  var email = document.f.email.value;
+  var arobase = email.indexOf("@");
+  var point = email.lastIndexOf(".");
+
+  var ok = arobase >= 1                              // @ exists, something before it
+        && /[a-zA-Z0-9]/.test(email.charAt(0))       // starts with a letter or digit
+        && point > arobase + 1                       // a dot after @, not right next to it
+        && point < email.length - 1                  // dot not at the end
+        && email.indexOf("@", arobase + 1) == -1     // only one @
+        && email.indexOf(" ") == -1;                 // no spaces
+
+  if (ok) alert("Valid email");
+  else    alert("Invalid email");
+}
+</SCRIPT>
+</BODY>
+</HTML>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>Ex 8 - Événements de souris</title>
+<style>
+  body { font-family: Arial, sans-serif; }
+  .carte { display: inline-block; width: 200px; height: 200px; margin: 10px; border-radius: 10px;
+           background: #3498db; color: white; line-height: 200px; text-align: center; font-size: 18px; }
+</style></head>
+<body>
+<div class="carte" id="d1">Passez la souris ici</div>
+<div class="carte" id="d2">Passez la souris ici</div>
+<script>
+var couleurOrigine = "#3498db";
+var couleurSurvol = "#e74c3c";
+
+function brancher(id) {
+  var d = document.getElementById(id);
+  d.onmouseover = function () { d.style.backgroundColor = couleurSurvol; };
+  d.onmouseout  = function () { d.style.backgroundColor = couleurOrigine; };
+}
+brancher("d1");
+brancher("d2");
+</script>
+</body></html>

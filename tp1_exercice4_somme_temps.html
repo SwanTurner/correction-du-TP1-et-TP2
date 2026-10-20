@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<TITLE>Sum of three durations</TITLE>
+</HEAD>
+<BODY>
+<FORM name="f">
+  Enter the first time :<br>
+  Hour(s) <INPUT type="text" name="h1" size="8" value="0">
+  Minute(s) <INPUT type="text" name="m1" size="8" value="0">
+  Second(s) <INPUT type="text" name="s1" size="8" value="0"><br>
+
+  Enter the second time :<br>
+  Hour(s) <INPUT type="text" name="h2" size="8" value="0">
+  Minute(s) <INPUT type="text" name="m2" size="8" value="0">
+  Second(s) <INPUT type="text" name="s2" size="8" value="0"><br>
+
+  Enter the third time :<br>
+  Hour(s) <INPUT type="text" name="h3" size="8" value="0">
+  Minute(s) <INPUT type="text" name="m3" size="8" value="0">
+  Second(s) <INPUT type="text" name="s3" size="8" value="0"><br>
+
+  Total of the three times :<br>
+  Day(s) <INPUT type="text" name="jr" size="8">
+  Hour(s) <INPUT type="text" name="hr" size="8">
+  Minute(s) <INPUT type="text" name="mr" size="8">
+  Second(s) <INPUT type="text" name="sr" size="8"><br>
+
+  <INPUT type="button" value="Sum" onClick="somme()">
+  <INPUT type="reset" value="Clear">
+</FORM>
+
+<SCRIPT LANGUAGE="Javascript">
+function enSecondes(h, m, s) {
+  return parseInt(h, 10) * 3600 + parseInt(m, 10) * 60 + parseInt(s, 10);
+}
+
+function somme() {
+  var f = document.f;
+  var total = enSecondes(f.h1.value, f.m1.value, f.s1.value)
+            + enSecondes(f.h2.value, f.m2.value, f.s2.value)
+            + enSecondes(f.h3.value, f.m3.value, f.s3.value);
+
+  if (isNaN(total)) {
+    alert("Please enter valid numbers in every field");
+    return;
+  }
+
+  var jours = Math.floor(total / 86400);
+  total = total % 86400;
+  var heures = Math.floor(total / 3600);
+  total = total % 3600;
+  var minutes = Math.floor(total / 60);
+  var secondes = total % 60;
+
+  f.jr.value = jours;
+  f.hr.value = heures;
+  f.mr.value = minutes;
+  f.sr.value = secondes;
+}
+</SCRIPT>
+</BODY>
+</HTML>

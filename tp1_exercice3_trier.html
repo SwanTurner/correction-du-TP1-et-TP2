@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<TITLE>trier()</TITLE>
+</HEAD>
+<BODY>
+<SCRIPT LANGUAGE="Javascript">
+// Version 1: built-in sort with a numeric comparison function
+function trier(tab) {
+  return tab.slice().sort(function (a, b) { return a - b; });
+}
+
+// Version 2: bubble sort (without sort())
+function trierBulles(tab) {
+  var t = tab.slice();
+  for (var i = 0; i < t.length - 1; i++) {
+    for (var j = 0; j < t.length - 1 - i; j++) {
+      if (t[j] > t[j + 1]) {
+        var tmp = t[j];
+        t[j] = t[j + 1];
+        t[j + 1] = tmp;
+      }
+    }
+  }
+  return t;
+}
+
+var liste = new Array(12, 5, 100, 9, 33, 1);
+document.write("Original list : " + liste.join(" , ") + "<br>");
+document.write("trier() : " + trier(liste).join(" , ") + "<br>");
+document.write("Bubble sort : " + trierBulles(liste).join(" , "));
+</SCRIPT>
+</BODY>
+</HTML>

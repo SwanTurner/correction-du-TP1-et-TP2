@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>Ex 11 - Filtrage de tableau</title>
+<style>
+  body { font-family: Arial, sans-serif; max-width: 500px; margin: 20px; }
+  #recherche { width: 100%; box-sizing: border-box; padding: 8px; margin-bottom: 15px; }
+  ul { list-style: none; padding: 0; }
+  li { padding: 8px; border-bottom: 1px solid #eee; }
+</style></head>
+<body>
+<h3>Liste de Produits</h3>
+<input type="text" id="recherche" placeholder="Rechercher un produit..." oninput="filtrer()">
+<ul id="liste">
+  <li>Ordinateur Portable</li>
+  <li>Smartphone</li>
+  <li>Casque Audio</li>
+  <li>Écran LED</li>
+  <li>Clavier Mécanique</li>
+  <li>Souris Sans Fil</li>
+</ul>
+<script>
+function filtrer() {
+  var saisie = document.getElementById("recherche").value.toLowerCase();
+  var items = document.getElementById("liste").getElementsByTagName("li");
+  for (var i = 0; i < items.length; i++) {
+    var visible = items[i].textContent.toLowerCase().indexOf(saisie) !== -1;
+    items[i].style.display = visible ? "" : "none";
+  }
+}
+</script>
+</body></html>

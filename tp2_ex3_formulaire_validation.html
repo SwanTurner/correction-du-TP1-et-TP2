@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>Ex 3 - Formulaire de validation</title>
+<style>
+  .erreur { color: red; font-size: 13px; }
+  label { display: block; margin-top: 10px; }
+</style></head>
+<body>
+<form name="monForm" onsubmit="return valider()">
+  <label>Nom : <input type="text" name="nom"></label>
+  <span class="erreur" id="errNom"></span>
+  <label>Email : <input type="text" name="email"></label>
+  <span class="erreur" id="errEmail"></span>
+  <br><br>
+  <button type="submit">Soumettre</button>
+</form>
+<script>
+function valider() {
+  var nom = document.monForm.nom.value.trim();
+  var email = document.monForm.email.value.trim();
+  var ok = true;
+
+  document.getElementById("errNom").textContent = "";
+  document.getElementById("errEmail").textContent = "";
+
+  if (nom === "") {
+    document.getElementById("errNom").textContent = "Le nom est obligatoire";
+    ok = false;
+  }
+  if (email === "") {
+    document.getElementById("errEmail").textContent = "L'email est obligatoire";
+    ok = false;
+  } else if (email.indexOf("@") < 1 || email.lastIndexOf(".") < email.indexOf("@") + 2) {
+    document.getElementById("errEmail").textContent = "Email invalide";
+    ok = false;
+  }
+
+  if (ok) alert("Formulaire envoyé !");
+  return ok;   // false = empêche l'envoi
+}
+</script>
+</body></html>

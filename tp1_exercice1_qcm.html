@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<TITLE>QCM JavaScript</TITLE>
+<SCRIPT LANGUAGE="Javascript">
+// type "multi" = checkboxes, "single" = radio buttons; good = indexes of correct answers
+var qcm = new Array(5);
+qcm[0] = { q: "Which of these are JavaScript data types?", type: "multi",
+           choix: ["Number", "Boolean", "Float", "String"], good: [0, 1, 3] };
+qcm[1] = { q: "Which events apply to a text field?", type: "multi",
+           choix: ["onFocus", "onLoad", "onBlur", "onChange"], good: [0, 2, 3] };
+qcm[2] = { q: "Which methods belong to the Math object?", type: "multi",
+           choix: ["sqrt()", "toUpperCase()", "random()", "ceil()"], good: [0, 2, 3] };
+qcm[3] = { q: "Which method writes into the document?", type: "single",
+           choix: ["document.write()", "window.print()", "alert()", "prompt()"], good: [0] };
+qcm[4] = { q: "Which operator gives the remainder of a division?", type: "single",
+           choix: ["/", "%", "*", "=="], good: [1] };
+
+function genererQCM() {
+  var html = "";
+  for (var i = 0; i < qcm.length; i++) {
+    html += "<p><b>Question " + (i + 1) + " : " + qcm[i].q + "</b>";
+    html += qcm[i].type == "multi" ? " (several answers possible)" : " (one answer)";
+    html += "<br>";
+    for (var j = 0; j < qcm[i].choix.length; j++) {
+      var t = qcm[i].type == "multi" ? "checkbox" : "radio";
+      html += "<input type='" + t + "' name='q" + i + "' value='" + j + "'> " + qcm[i].choix[j] + "<br>";
+    }
+    html += "</p>";
+  }
+  document.getElementById("zoneQCM").innerHTML = html;
+}
+
+function reponsesUtilisateur(i) {
+  var elts = document.getElementsByName("q" + i);
+  var rep = new Array();
+  for (var j = 0; j < elts.length; j++)
+    if (elts[j].checked) rep.push(j);
+  return rep;
+}
+
+function estCorrecte(i) {
+  var rep = reponsesUtilisateur(i);
+  var good = qcm[i].good;
+  if (rep.length != good.length) return false;
+  for (var k = 0; k < good.length; k++)
+    if (rep[k] != good[k]) return false;
+  return true;
+}
+
+function afficherCorrige() {
+  var nbLignes = 0;
+  var h = "<h2>Answer key</h2>";
+  for (var i = 0; i < qcm.length; i++) {
+    h += "<p><b>Question " + (i + 1) + " : " + qcm[i].q + "</b><br>";
+    nbLignes += 2;
+    for (var j = 0; j < qcm[i].choix.length; j++) {
+      if (qcm[i].good.indexOf(j) != -1)
+        h += "<u style='color:green'>" + qcm[i].choix[j] + "</u><br>";
+      else
+        h += qcm[i].choix[j] + "<br>";
+      nbLignes++;
+    }
+    h += "</p>";
+  }
+  var w = window.open("", "corrige", "width=450,height=" + (80 + 22 * nbLignes) + ",scrollbars=yes");
+  w.document.write(h);
+  w.document.close();
+}
+
+function afficherResultat() {
+  var h = "<h2>Result</h2>";
+  var score = 0;
+  for (var i = 0; i < qcm.length; i++) {
+    if (estCorrecte(i)) {
+      score++;
+      h += "The answer to question " + (i + 1) + " is <b style='color:green'>correct</b><br>";
+    } else {
+      h += "The answer to question " + (i + 1) + " is <b style='color:red'>incorrect</b><br>";
+    }
+  }
+  h += "<p>Score : " + score + " / " + qcm.length + "</p>";
+  var w = window.open("", "resultat", "width=380,height=" + (120 + 22 * qcm.length));
+  w.document.write(h);
+  w.document.close();
+}
+
+function initialiser() {
+  document.getElementById("formQCM").reset();
+}
+</SCRIPT>
+</HEAD>
+<BODY onLoad="genererQCM()">
+<h1>QCM</h1>
+<FORM id="formQCM">
+  <div id="zoneQCM"></div>
+  <INPUT TYPE="button" VALUE="Reset" onClick="initialiser()">
+  <INPUT TYPE="button" VALUE="Show answer key" onClick="afficherCorrige()">
+  <INPUT TYPE="button" VALUE="Show result" onClick="afficherResultat()">
+</FORM>
+</BODY>
+</HTML>

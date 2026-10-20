@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>Ex 6 - Menu déroulant animé</title>
+<style>
+  body { font-family: Arial, sans-serif; }
+  .menu { width: 220px; }
+  .titre { background: #2c3e50; color: white; padding: 12px; cursor: pointer; user-select: none;
+           display: flex; justify-content: space-between; }
+  .fleche { transition: transform 0.3s; }
+  .menu.ouvert .fleche { transform: rotate(180deg); }
+  .contenu { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; background: #ecf0f1; }
+  .menu.ouvert .contenu { max-height: 200px; }
+  .contenu a { display: block; padding: 10px 12px; color: #2c3e50; text-decoration: none; }
+  .contenu a:hover { background: #bdc3c7; }
+</style></head>
+<body>
+<div class="menu" id="menu">
+  <div class="titre" onclick="basculerMenu()">Menu <span class="fleche">▼</span></div>
+  <div class="contenu">
+    <a href="#">Accueil</a>
+    <a href="#">Cours</a>
+    <a href="#">Contact</a>
+  </div>
+</div>
+<script>
+function basculerMenu() {
+  document.getElementById("menu").classList.toggle("ouvert");
+}
+</script>
+</body></html>

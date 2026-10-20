@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>Ex 9 - To-do list</title>
+<style>
+  body { font-family: Arial, sans-serif; }
+  li { margin: 6px 0; }
+  li.fait span { text-decoration: line-through; color: gray; }
+</style></head>
+<body>
+<input type="text" id="champ" placeholder="Ajouter une tâche" onkeydown="if(event.key==='Enter') ajouter()">
+<button onclick="ajouter()">Ajouter</button>
+<ul id="liste"></ul>
+<script>
+function ajouter() {
+  var champ = document.getElementById("champ");
+  var texte = champ.value.trim();
+  if (texte === "") return;
+
+  var li = document.createElement("li");
+
+  var span = document.createElement("span");
+  span.textContent = texte + " ";
+
+  var btnFait = document.createElement("button");
+  btnFait.textContent = "Fait";
+  btnFait.onclick = function () { li.classList.toggle("fait"); };
+
+  var btnSup = document.createElement("button");
+  btnSup.textContent = "Supprimer";
+  btnSup.onclick = function () { li.remove(); };
+
+  li.appendChild(span);
+  li.appendChild(btnFait);
+  li.appendChild(btnSup);
+  document.getElementById("liste").appendChild(li);
+
+  champ.value = "";
+  champ.focus();
+}
+</script>
+</body></html>

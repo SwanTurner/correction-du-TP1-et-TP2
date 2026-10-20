@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>Ex 2 - Afficher/Masquer</title></head>
+<body>
+<button id="btn" onclick="basculer()">Masquer</button>
+<p id="texte">Ceci est un paragraphe de texte qu'on peut afficher ou masquer.</p>
+<script>
+function basculer() {
+  var p = document.getElementById("texte");
+  var btn = document.getElementById("btn");
+  if (p.style.display === "none") {
+    p.style.display = "block";
+    btn.textContent = "Masquer";
+  } else {
+    p.style.display = "none";
+    btn.textContent = "Afficher";
+  }
+}
+</script>
+</body></html>

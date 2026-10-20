@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>Ex 13 - Barre de progression</title>
+<style>
+  body { font-family: Arial, sans-serif; max-width: 600px; margin: 30px auto; text-align: center; }
+  #fond { background: #eee; border-radius: 4px; height: 24px; overflow: hidden; }
+  #barre { width: 0%; height: 100%; background: #4caf50; }
+  button { margin-top: 20px; padding: 10px 18px; background: #0a8fc0; color: white; border: none; border-radius: 4px; cursor: pointer; }
+</style></head>
+<body>
+<h3>Barre de Progression</h3>
+<div id="fond"><div id="barre"></div></div>
+<p id="pourcent">0 %</p>
+<button id="btn" onclick="demarrer()">Démarrer la Progression</button>
+<script>
+var timer = null;
+function demarrer() {
+  if (timer !== null) return;                 // évite de lancer deux animations
+  var largeur = 0;
+  document.getElementById("barre").style.width = "0%";
+  timer = setInterval(function () {
+    largeur++;
+    document.getElementById("barre").style.width = largeur + "%";
+    document.getElementById("pourcent").textContent = largeur + " %";
+    if (largeur >= 100) {
+      clearInterval(timer);
+      timer = null;
+    }
+  }, 30);
+}
+</script>
+</body></html>

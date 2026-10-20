@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>Ex 5 - Carousel d'images</title>
+<style>
+  body { font-family: Arial, sans-serif; text-align: center; }
+  #image { width: 400px; height: 250px; border-radius: 8px; display: block; margin: 20px auto; }
+  button { padding: 8px 16px; margin: 0 5px; }
+</style></head>
+<body>
+<h3>Galerie</h3>
+<img id="image" alt="image du carousel">
+<p id="legende"></p>
+<button onclick="changer(-1)">Précédent</button>
+<button onclick="changer(1)">Suivant</button>
+<script>
+// Images générées en SVG (aucun fichier externe). Remplacez par vos propres fichiers :
+// var images = ["img/photo1.jpg", "img/photo2.jpg", ...];
+function creerImage(couleur, texte) {
+  var svg = "<svg xmlns='http://www.w3.org/2000/svg' width='400' height='250'>" +
+            "<rect width='100%' height='100%' fill='" + couleur + "'/>" +
+            "<text x='50%' y='50%' font-size='36' fill='white' text-anchor='middle' " +
+            "dominant-baseline='middle' font-family='Arial'>" + texte + "</text></svg>";
+  return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+}
+var images = [
+  creerImage("#3498db", "Image 1"),
+  creerImage("#e74c3c", "Image 2"),
+  creerImage("#2ecc71", "Image 3"),
+  creerImage("#f39c12", "Image 4")
+];
+var i = 0;
+
+function afficher() {
+  document.getElementById("image").src = images[i];
+  document.getElementById("legende").textContent = "Image " + (i + 1) + " / " + images.length;
+}
+function changer(sens) {
+  i = (i + sens + images.length) % images.length;   // boucle circulaire
+  afficher();
+}
+afficher();
+</script>
+</body></html>

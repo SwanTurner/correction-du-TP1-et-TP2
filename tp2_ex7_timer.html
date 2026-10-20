@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>Ex 7 - Timer en temps réel</title>
+<style>
+  #timer { display: inline-block; font: 22px Arial; padding: 15px 30px;
+           box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+</style></head>
+<body>
+<div id="timer">Temps écoulé : 0 seconde</div>
+<script>
+var secondes = 0;
+setInterval(function () {
+  secondes++;
+  document.getElementById("timer").textContent =
+    "Temps écoulé : " + secondes + (secondes > 1 ? " secondes" : " seconde");
+}, 1000);
+</script>
+</body></html>

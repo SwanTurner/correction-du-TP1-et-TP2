@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>Ex 4.1 - Calculateur</title></head>
+<body>
+<h3>Calculateur</h3>
+<input type="number" id="a" placeholder="Nombre 1">
+<input type="number" id="b" placeholder="Nombre 2">
+<br><br>
+<button onclick="calculer('+')">+</button>
+<button onclick="calculer('-')">-</button>
+<button onclick="calculer('*')">*</button>
+<button onclick="calculer('/')">/</button>
+<p>Résultat : <b id="res">-</b></p>
+<script>
+function calculer(op) {
+  var a = parseFloat(document.getElementById("a").value);
+  var b = parseFloat(document.getElementById("b").value);
+  var r;
+  if (isNaN(a) || isNaN(b)) { r = "Entrez deux nombres valides"; }
+  else if (op === "+") r = a + b;
+  else if (op === "-") r = a - b;
+  else if (op === "*") r = a * b;
+  else if (op === "/") r = (b === 0) ? "Division par zéro impossible" : a / b;
+  document.getElementById("res").textContent = r;
+}
+</script>
+</body></html>

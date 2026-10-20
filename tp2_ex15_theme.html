@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>Ex 15 - Thème clair/sombre</title>
+<style>
+  body { font-family: Arial, sans-serif; text-align: center; padding: 40px; transition: background 0.3s, color 0.3s; }
+  body.clair  { background: #f0f0f0; color: #111; }
+  body.sombre { background: #111; color: #fff; }
+  button { padding: 8px 14px; cursor: pointer; }
+</style></head>
+<body>
+<h2>Basculer entre Thème Clair et Sombre</h2>
+<button id="btn" onclick="basculer()"></button>
+<script>
+function appliquer(theme) {
+  document.body.className = theme;
+  document.getElementById("btn").textContent =
+    (theme === "sombre") ? "Activer le Thème Clair" : "Activer le Thème Sombre";
+}
+function basculer() {
+  var nouveau = document.body.classList.contains("sombre") ? "clair" : "sombre";
+  appliquer(nouveau);
+  localStorage.setItem("theme", nouveau);     // mémorise le choix
+}
+// au chargement : on relit la préférence (clair par défaut)
+appliquer(localStorage.getItem("theme") || "clair");
+</script>
+</body></html>
